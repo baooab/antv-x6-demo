@@ -7,6 +7,7 @@ import { Lesson05Snapline } from './demos/Lesson05Snapline'
 import { Lesson06Stencil } from './demos/Lesson06Stencil'
 import { Lesson07DropReplace } from './demos/Lesson07DropReplace'
 import { Lesson08FullApp } from './demos/Lesson08FullApp'
+import { Lesson09GraphWatch } from './demos/Lesson09GraphWatch'
 
 export type LessonEntry = {
   id: string
@@ -134,5 +135,21 @@ export const LESSONS: LessonEntry[] = [
     bullets: ['对应生产代码入口：`AgentFlowView.tsx` + `agent-flow` 目录各模块。'],
     relatedFiles: ['src/agent-flow/AgentFlowView.tsx'],
     Demo: Lesson08FullApp,
+  },
+  {
+    id: 'l09',
+    indexLabel: '09',
+    title: '监听模型：cell 增删与变更',
+    lead:
+      'X6 v3 使用 **`cell:change:position`**、**`cell:change:data`** 等（无 **`cell:changed`**）。订阅 **`cell:added` / `cell:removed`** 与上述 change 事件；React 输入框经 **`node.setData`** 触发 **`cell:change:data`**。侧栏含 **`graph.toJSON()`** 预览（防抖）与事件日志。',
+    bullets: [
+      '与 `node:added` 等单类型事件相比，`cell:*` 覆盖节点与边，适合做「整图模型」级别的监听。',
+      '侧栏实时展示 `graph.toJSON()` 格式化结果，便于对照持久化；可与防抖全量保存或增量推送配合。',
+    ],
+    relatedFiles: [
+      'src/tutorial/demos/Lesson09GraphWatch.tsx',
+      'src/agent-flow/nodes/AgentReactCard.tsx（input → node.setData）',
+    ],
+    Demo: Lesson09GraphWatch,
   },
 ]

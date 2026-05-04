@@ -24,6 +24,8 @@ export function AgentReactCard({ node }: Props) {
     desc: raw?.desc ?? '',
     theme: raw?.theme ?? 'blue',
     inputPlaceholder: raw?.inputPlaceholder,
+    inputDraft: raw?.inputDraft,
+    peerEcho: raw?.peerEcho,
   }
   const theme = data.theme ?? 'blue'
   const rootExtra = THEME_ROOT[theme]
@@ -50,10 +52,26 @@ export function AgentReactCard({ node }: Props) {
         </div>
       </div>
       {data.inputPlaceholder ? (
-        <div className={styles.body}>
-          <span className={styles.section}>节点内容</span>
-          <input type="text" placeholder={data.inputPlaceholder} />
-        </div>
+        <>
+          <div className={styles.body}>
+            <span className={styles.section}>节点内容</span>
+            <input
+              type="text"
+              placeholder={data.inputPlaceholder}
+              value={data.inputDraft ?? ''}
+              onChange={(e) => {
+                e.stopPropagation()
+                const prev = (node.getData() as AgentCardConfig | null) ?? {}
+                node.setData({ ...prev, inputDraft: e.target.value })
+              }}
+            />
+          </div>
+          {data.peerEcho ? (
+            <div className={styles.peerEcho} title={data.peerEcho}>
+              {data.peerEcho}
+            </div>
+          ) : null}
+        </>
       ) : (
         <div className={styles.desc}>{data.desc}</div>
       )}

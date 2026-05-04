@@ -9,6 +9,10 @@ export type AgentCardConfig = {
   desc: string
   theme?: 'blue' | 'green' | 'orange' | 'red'
   inputPlaceholder?: string
+  /** 与 inputPlaceholder 配套：输入内容写回 `node.data`，便于监听 model 与持久化 */
+  inputDraft?: string
+  /** 可选：由同伴节点 data 变更时写入的一行提示（如教程第 09 课交叉监听演示） */
+  peerEcho?: string
 }
 
 export type FlowData = {

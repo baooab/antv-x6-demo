@@ -95,3 +95,13 @@
   font-size: 14px;
   cursor: pointer;
 }
+
+.peerEcho {
+  font-size: 10px;
+  line-height: 1.25;
+  color: #8c8c8c;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
