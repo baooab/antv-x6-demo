@@ -1,9 +1,9 @@
 import { Graph } from '@antv/x6'
 import { useEffect, useRef } from 'react'
+import { ensureReactShapesRegistered } from '../x6/registerReactShapes'
 
 /**
- * 最小可运行示例：挂载 Graph、添加节点与边。
- * 后续教程可在此组件旁新增章节组件或抽离 hooks。
+ * 演示：输入 / 函数 / 输出三类 React 节点与静态连线（无连接桩、不开启用户拉线）。
  */
 export function DemoGraph() {
   const wrapRef = useRef<HTMLDivElement>(null)
@@ -12,59 +12,91 @@ export function DemoGraph() {
     const el = wrapRef.current
     if (!el) return
 
+    ensureReactShapesRegistered()
+
     const graph = new Graph({
       container: el,
-      // 随容器尺寸变化重算宽高（需父级有明确高度，见 App.css 中 .demo-graph-canvas）
       autoResize: true,
       background: { color: '#f5f5f5' },
-      // true 为默认点阵；也可传入 { type: 'dot', args: {...} } 等细调
       grid: true,
-      // 拖动画布空白处平移视口；与节点 translating 是两套能力
       panning: false,
       translating: {
-        // 节点拖拽限制在画布可视区域内（内部等价 getGraphArea()）
         restrict: true,
       },
       mousewheel: {
         enabled: true,
-        // 须按住 Ctrl（Win/Linux）或 ⌘（mac）再滚轮才缩放，避免误触
         modifiers: ['ctrl', 'meta'],
       },
     })
 
-    const source = graph.addNode({
-      x: 80,
-      y: 80,
-      width: 100,
-      height: 48,
-      label: '节点 A',
+    const input = graph.addNode({
+      shape: 'pipeline-input',
+      x: 36,
+      y: 108,
+      data: {
+        title: '查询输入',
+        params: [
+          { key: 'q', value: '全文检索' },
+          { key: 'topK', value: '20' },
+        ],
+      },
     })
 
-    const target = graph.addNode({
-      x: 280,
-      y: 200,
-      width: 100,
-      height: 48,
-      label: '节点 B',
+    const fn = graph.addNode({
+      shape: 'pipeline-function',
+      x: 300,
+      y: 72,
+      data: {
+        title: '检索流水线',
+        description: '消费上游参数，执行召回、打分与截断，再交给输出侧消费。',
+        steps: ['解析参数 q / topK', '向量召回与粗排', '相关性精排并截取 topK'],
+      },
+    })
+
+    const output = graph.addNode({
+      shape: 'pipeline-output',
+      x: 612,
+      y: 68,
+      data: {
+        title: '结果落地',
+        params: [
+          {
+            key: 'documents',
+            process: '丢弃 score 低于 0.5 的条目；保留标题与摘要字段。',
+          },
+          {
+            key: 'metrics',
+            process: '聚合为表格：请求量、平均耗时、错误率。',
+          },
+        ],
+      },
     })
 
     graph.addEdge({
-      source,
-      target,
+      source: input,
+      target: fn,
       attrs: {
         line: {
-          stroke: '#5F95FF',
+          stroke: '#10b981',
           strokeWidth: 2,
-          targetMarker: {
-            name: 'classic',
-            size: 8,
-          },
+          targetMarker: { name: 'classic', size: 8 },
+        },
+      },
+    })
+
+    graph.addEdge({
+      source: fn,
+      target: output,
+      attrs: {
+        line: {
+          stroke: '#3b82f6',
+          strokeWidth: 2,
+          targetMarker: { name: 'classic', size: 8 },
         },
       },
     })
 
     return () => {
-      // 卸载时移除监听与 DOM，避免 StrictMode 双调用或路由切换泄漏
       graph.dispose()
     }
   }, [])
