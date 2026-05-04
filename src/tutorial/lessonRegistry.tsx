@@ -74,10 +74,10 @@ export const LESSONS: LessonEntry[] = [
     indexLabel: '04',
     title: '端口悬停显隐与边的删除按钮',
     lead:
-      '把「鼠标进入节点 → 显示全部桩；离开 → 只保留已连线桩」写在 `graph.on(\'node:mouseenter\')` 等事件里。边上加 `button-remove` 工具，便于删除连线。',
+      '端口仅在悬停节点时显示；边上悬停出现删除按钮。本课在 `connecting.validateConnection` 中用 **黑名单**：默认允许连线，只禁止 **下游（key=b）→ 上游（key=a）**，便于后续多节点类型时只增列禁止组合。',
     bullets: [
-      '`edge:added` / `edge:removed` 里根据 `isPortConnected` 更新圆点颜色与显隐。',
-      '逻辑集中在 `graphInteractions.ts`，与 React 视图解耦。',
+      '`edge:added` / `edge:removed` 等与 `graphInteractions` 同步端口颜色与显隐。',
+      '逻辑集中在 `graphInteractions.ts`；连线约束仅在 `Lesson04PortInteraction.tsx` 覆盖默认 `validateConnection`。',
     ],
     relatedFiles: [
       'src/agent-flow/graphInteractions.ts',
