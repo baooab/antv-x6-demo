@@ -1,0 +1,153 @@
+.tutorial-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 260px) 1fr;
+  gap: 0;
+  flex: 1;
+  min-height: 0;
+  border: 1px solid var(--border, #dfe3e8);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.tutorial-nav {
+  border-right: 1px solid var(--border, #dfe3e8);
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.tutorial-nav h2 {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #595959;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tutorial-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0.75rem;
+  overflow-y: auto;
+}
+
+.tutorial-nav-item {
+  width: 100%;
+  text-align: left;
+  padding: 0.55rem 1rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: #262626;
+  border-left: 3px solid transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+}
+
+.tutorial-nav-item:hover {
+  background: rgba(95, 149, 255, 0.08);
+}
+
+.tutorial-nav-item.is-active {
+  background: rgba(95, 149, 255, 0.12);
+  border-left-color: #5f95ff;
+  font-weight: 600;
+}
+
+.tutorial-nav-index {
+  font-size: 0.7rem;
+  color: #8c8c8c;
+  font-weight: 500;
+}
+
+.tutorial-nav-title {
+  line-height: 1.35;
+}
+
+.tutorial-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.tutorial-article {
+  flex-shrink: 0;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border, #dfe3e8);
+  background: #fff;
+}
+
+.tutorial-article h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.tutorial-lead {
+  margin: 0 0 0.65rem;
+  font-size: 0.9rem;
+  color: #434343;
+  line-height: 1.55;
+}
+
+.tutorial-bullets {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.875rem;
+  color: #595959;
+  line-height: 1.6;
+}
+
+.tutorial-bullets li {
+  margin-bottom: 0.35rem;
+}
+
+.tutorial-files {
+  margin-top: 0.65rem;
+  font-size: 0.8rem;
+  color: #8c8c8c;
+}
+
+.tutorial-files code {
+  font-size: 0.78rem;
+  background: #f5f5f5;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+.tutorial-demo-wrap {
+  flex: 1;
+  min-height: 420px;
+  position: relative;
+  background: #fafafa;
+}
+
+.tutorial-single-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.tutorial-demo-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.tutorial-demo-inner .agent-flow-root {
+  flex: 1;
+  min-height: 0;
+  border: none;
+  border-radius: 0;
+}

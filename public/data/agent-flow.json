@@ -1,0 +1,52 @@
+{
+  "llm": {
+    "key": "llm",
+    "iconText": "LLM",
+    "title": "大模型",
+    "desc": "调用大语言模型完成推理与决策",
+    "theme": "blue",
+    "inputPlaceholder": "提示词 / 系统指令"
+  },
+  "code": {
+    "key": "code",
+    "iconText": "Code",
+    "title": "代码执行",
+    "desc": "在受控环境中执行自定义脚本",
+    "theme": "green"
+  },
+  "branch": {
+    "key": "branch",
+    "iconText": "IF",
+    "title": "条件分支",
+    "desc": "根据条件表达式分流执行路径",
+    "theme": "orange"
+  },
+  "loop": {
+    "key": "loop",
+    "iconText": "↻",
+    "title": "循环",
+    "desc": "按迭代策略重复执行子流程",
+    "theme": "red"
+  },
+  "kb": {
+    "key": "kb",
+    "iconText": "KB",
+    "title": "知识库",
+    "desc": "检索向量库与结构化知识条目",
+    "theme": "blue"
+  },
+  "mcp": {
+    "key": "mcp",
+    "iconText": "MCP",
+    "title": "MCP 工具",
+    "desc": "通过 MCP 协议调用外部工具",
+    "theme": "green"
+  },
+  "db": {
+    "key": "db",
+    "iconText": "DB",
+    "title": "数据库",
+    "desc": "查询或写入业务数据库",
+    "theme": "orange"
+  }
+}
