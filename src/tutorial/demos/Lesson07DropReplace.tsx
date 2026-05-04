@@ -5,6 +5,7 @@ import { createAgentCard, createAgentStencilCard } from '../../agent-flow/factor
 import {
   agentFlowHighlighting,
   agentFlowViewport,
+  agentStencilGraphOptions,
   createAgentFlowConnecting,
 } from '../../agent-flow/graphOptions'
 import { ensureAgentFlowShapesRegistered } from '../../agent-flow/registerShapes'
@@ -44,7 +45,7 @@ export function Lesson07DropReplace() {
       target: graph,
       stencilGraphWidth: 240,
       stencilGraphHeight: 480,
-      stencilGraphOptions: { panning: true },
+      stencilGraphOptions: agentStencilGraphOptions,
       collapsable: true,
       groups: [
         {

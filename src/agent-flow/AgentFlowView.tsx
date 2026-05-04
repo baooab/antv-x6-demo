@@ -9,6 +9,7 @@ import { createAgentCard, createAgentStencilCard } from './factory'
 import {
   agentFlowHighlighting,
   agentFlowViewport,
+  agentStencilGraphOptions,
   createAgentFlowConnecting,
 } from './graphOptions'
 import { ensureAgentFlowShapesRegistered } from './registerShapes'
@@ -46,7 +47,7 @@ export function AgentFlowView() {
       target: graph,
       stencilGraphWidth: 240,
       stencilGraphHeight: 480,
-      stencilGraphOptions: { panning: true },
+      stencilGraphOptions: agentStencilGraphOptions,
       collapsable: true,
       groups: [
         {

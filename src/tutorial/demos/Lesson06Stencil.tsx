@@ -5,6 +5,7 @@ import { createAgentStencilCard } from '../../agent-flow/factory'
 import {
   agentFlowHighlighting,
   agentFlowViewport,
+  agentStencilGraphOptions,
   createAgentFlowConnecting,
 } from '../../agent-flow/graphOptions'
 import { registerAgentEdgeShape, registerStencilPreviewNode } from '../../agent-flow/registerShapes'
@@ -56,7 +57,7 @@ export function Lesson06Stencil() {
       target: graph,
       stencilGraphWidth: 240,
       stencilGraphHeight: 400,
-      stencilGraphOptions: { panning: true },
+      stencilGraphOptions: agentStencilGraphOptions,
       collapsable: true,
       groups: [
         { title: '数据类', name: 'data', graphHeight: 220, layoutOptions: { rowHeight: 88 } },

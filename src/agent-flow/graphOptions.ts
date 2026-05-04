@@ -21,6 +21,11 @@ export const agentFlowViewport = {
   mousewheel: agentFlowMousewheel,
 }
 
+/** 左侧 Stencil 各分组内的小图：关闭空白处拖移，避免误拖整块模具列表。 */
+export const agentStencilGraphOptions = {
+  panning: false as const,
+}
+
 /**
  * 传入 `() => graph` 而非 `graph` 本身，避免 `const graph = new Graph({ connecting: ... })`
  * 在入参求值阶段读取尚未完成初始化的 `graph`（TDZ）。
