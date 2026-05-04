@@ -31,7 +31,7 @@ src/
     demos/                   # Lesson01…Lesson08 可运行示例
   agent-flow/
     AgentFlowView.tsx        # 第 08 课完整编排界面
-    graphOptions.ts          # connecting / 滚轮 / 高亮
+    graphOptions.ts          # 视口（平移/滚轮修饰键/节点范围）、connecting、高亮
     registerShapes.ts        # 边与节点形状注册（可拆分调用）
     ports.ts                 # 四向连接桩
     graphInteractions.ts     # 端口与边事件
