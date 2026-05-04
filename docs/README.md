@@ -30,6 +30,7 @@ src/
     lessonRegistry.tsx       # 各课元数据（与上表一致）
     demos/                   # Lesson01…Lesson08 可运行示例
   agent-flow/
+    AgentFlowLayout.tsx      # 左 Stencil + 右画布布局（同目录 .module.css）
     AgentFlowView.tsx        # 第 08 课完整编排界面
     graphOptions.ts          # 视口（平移/滚轮修饰键/节点范围）、connecting、高亮
     registerShapes.ts        # 边与节点形状注册（可拆分调用）

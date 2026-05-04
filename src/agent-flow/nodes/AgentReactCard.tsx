@@ -5,8 +5,15 @@
 import type { Node } from '@antv/x6'
 import type { MouseEvent } from 'react'
 import type { AgentCardConfig } from '../types'
+import styles from './AgentReactCard.module.css'
 
 type Props = { node: Node }
+
+const THEME_ROOT: Partial<Record<NonNullable<AgentCardConfig['theme']>, string>> = {
+  green: styles.rootGreen,
+  orange: styles.rootOrange,
+  red: styles.rootRed,
+}
 
 export function AgentReactCard({ node }: Props) {
   const raw = node.getData() as AgentCardConfig | null | undefined
@@ -19,15 +26,16 @@ export function AgentReactCard({ node }: Props) {
     inputPlaceholder: raw?.inputPlaceholder,
   }
   const theme = data.theme ?? 'blue'
+  const rootExtra = THEME_ROOT[theme]
 
   return (
-    <div className={`agent-card ${theme}`}>
-      <div className="header">
-        <div className="icon">{data.iconText}</div>
-        <div className="title">{data.title}</div>
-        <div className="actions">
+    <div className={[styles.card, rootExtra].filter(Boolean).join(' ')}>
+      <div className={styles.header}>
+        <div className={styles.icon}>{data.iconText}</div>
+        <div className={styles.title}>{data.title}</div>
+        <div className={styles.actions}>
           <span
-            className="op"
+            className={styles.op}
             title="删除节点"
             onClick={(e: MouseEvent) => {
               e.stopPropagation()
@@ -42,12 +50,12 @@ export function AgentReactCard({ node }: Props) {
         </div>
       </div>
       {data.inputPlaceholder ? (
-        <div className="body">
-          <span className="section">节点内容</span>
+        <div className={styles.body}>
+          <span className={styles.section}>节点内容</span>
           <input type="text" placeholder={data.inputPlaceholder} />
         </div>
       ) : (
-        <div className="desc">{data.desc}</div>
+        <div className={styles.desc}>{data.desc}</div>
       )}
     </div>
   )

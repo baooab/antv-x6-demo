@@ -3,6 +3,7 @@
  */
 import type { Node } from '@antv/x6'
 import type { FlowData } from '../types'
+import styles from './FlowCard.module.css'
 
 type Props = { node: Node }
 
@@ -10,21 +11,22 @@ export function FlowCard({ node }: Props) {
   const data = node.getData() as FlowData
   const shape = node.shape
   const type = shape === 'agent-end-card' ? 'end' : 'start'
+  const kind = type === 'end' ? styles.kindEnd : styles.kindStart
 
   return (
-    <div className={`flow-card ${type}`}>
-      <div className="header">
-        <div className="icon">{type === 'end' ? 'E' : 'S'}</div>
-        <div className="title">{data.title}</div>
-        {data.badge ? <div className="badge">{data.badge}</div> : null}
+    <div className={`${styles.card} ${kind}`}>
+      <div className={styles.header}>
+        <div className={styles.icon}>{type === 'end' ? 'E' : 'S'}</div>
+        <div className={styles.title}>{data.title}</div>
+        {data.badge ? <div className={styles.badge}>{data.badge}</div> : null}
       </div>
       {type === 'start' ? (
-        <div className="body">
-          <span className="section">Agent 开始节点</span>
+        <div className={styles.body}>
+          <span className={styles.section}>Agent 开始节点</span>
         </div>
       ) : (
-        <div className="footer">
-          <span className="section">Agent 结束节点</span>
+        <div className={styles.footer}>
+          <span className={styles.section}>Agent 结束节点</span>
         </div>
       )}
     </div>

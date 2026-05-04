@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react'
-import '../agent-flow/agent-flow.css'
 import './tutorial.css'
 import { LESSONS } from './lessonRegistry'
 

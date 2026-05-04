@@ -47,6 +47,7 @@ export const LESSONS: LessonEntry[] = [
       'src/agent-flow/registerShapes.ts（registerAgentEdgeShape）',
       'src/agent-flow/ports.ts',
       'src/agent-flow/graphOptions.ts',
+      'src/agent-flow/graphInteractions.ts（悬停显隐连接桩，与第 04 课同源）',
       'src/tutorial/demos/Lesson02CustomEdge.tsx',
     ],
     Demo: Lesson02CustomEdge,

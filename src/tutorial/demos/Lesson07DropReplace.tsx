@@ -9,7 +9,7 @@ import {
 } from '../../agent-flow/graphOptions'
 import { ensureAgentFlowShapesRegistered } from '../../agent-flow/registerShapes'
 import type { AgentConfigs } from '../../agent-flow/types'
-import '../../agent-flow/agent-flow.css'
+import { AgentFlowLayout } from '../../agent-flow/AgentFlowLayout'
 
 function getConfig(configs: AgentConfigs, type: string) {
   return configs[type] ?? null
@@ -117,9 +117,10 @@ export function Lesson07DropReplace() {
   }, [])
 
   return (
-    <div className="agent-flow-root tutorial-demo-inner">
-      <div ref={stencilRef} className="agent-flow-stencil" />
-      <div ref={graphRef} className="agent-flow-canvas" />
-    </div>
+    <AgentFlowLayout
+      stencilRef={stencilRef}
+      graphRef={graphRef}
+      className="tutorial-demo-inner"
+    />
   )
 }

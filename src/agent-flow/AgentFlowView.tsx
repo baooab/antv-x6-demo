@@ -5,7 +5,7 @@
 import { Graph, type Node, Snapline, Stencil } from '@antv/x6'
 import { useEffect, useRef } from 'react'
 import { bindAgentFlowInteractions } from './graphInteractions'
-import { createAgentCard, createAgentStencilCard, createFlowCard } from './factory'
+import { createAgentCard, createAgentStencilCard } from './factory'
 import {
   agentFlowHighlighting,
   agentFlowViewport,
@@ -13,7 +13,7 @@ import {
 } from './graphOptions'
 import { ensureAgentFlowShapesRegistered } from './registerShapes'
 import type { AgentConfigs } from './types'
-import './agent-flow.css'
+import { AgentFlowLayout } from './AgentFlowLayout'
 
 function getConfig(configs: AgentConfigs, type: string) {
   return configs[type] ?? null
@@ -117,26 +117,26 @@ export function AgentFlowView() {
         'data',
       )
 
-      const start = graph.addNode(
-        createFlowCard(graph, 'start', { title: '开始', badge: '触发器' }).position(60, 60),
-      )
-      const llm = graph.addNode(
-        createAgentCard(graph, must('llm')).position(220, 220),
-      )
-      const end = graph.addNode(
-        createFlowCard(graph, 'end', { title: '结束', badge: '输出器' }).position(360, 380),
-      )
+      // const start = graph.addNode(
+      //   createFlowCard(graph, 'start', { title: '开始', badge: '触发器' }).position(60, 60),
+      // )
+      // const llm = graph.addNode(
+      //   createAgentCard(graph, must('llm')).position(220, 220),
+      // )
+      // const end = graph.addNode(
+      //   createFlowCard(graph, 'end', { title: '结束', badge: '输出器' }).position(360, 380),
+      // )
 
-      graph.addEdge({
-        shape: 'agent-edge',
-        source: { cell: start.id, port: 'bottom' },
-        target: { cell: llm.id, port: 'top' },
-      })
-      graph.addEdge({
-        shape: 'agent-edge',
-        source: { cell: llm.id, port: 'bottom' },
-        target: { cell: end.id, port: 'top' },
-      })
+      // graph.addEdge({
+      //   shape: 'agent-edge',
+      //   source: { cell: start.id, port: 'bottom' },
+      //   target: { cell: llm.id, port: 'top' },
+      // })
+      // graph.addEdge({
+      //   shape: 'agent-edge',
+      //   source: { cell: llm.id, port: 'bottom' },
+      //   target: { cell: end.id, port: 'top' },
+      // })
     }
 
     run().catch((err) => {
@@ -152,10 +152,5 @@ export function AgentFlowView() {
     }
   }, [])
 
-  return (
-    <div className="agent-flow-root">
-      <div ref={stencilRef} className="agent-flow-stencil" />
-      <div ref={graphRef} className="agent-flow-canvas" />
-    </div>
-  )
+  return <AgentFlowLayout stencilRef={stencilRef} graphRef={graphRef} />
 }

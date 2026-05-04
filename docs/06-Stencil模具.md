@@ -11,7 +11,7 @@
 
 ## 布局说明
 
-典型页面结构为 **左：Stencil 容器** + **右：主 Graph 容器**（本仓库用 **`agent-flow.css`** 中的 `.agent-flow-root`、`.agent-flow-stencil`、`.agent-flow-canvas`）。
+典型页面结构为 **左：Stencil 容器** + **右：主 Graph 容器**（本仓库用 **`AgentFlowLayout`** 组件 + **`AgentFlowLayout.module.css`** 中的根区、左右栏与 X6 模具部件的全局覆盖样式）。
 
 Stencil 的 **`container`** 需插入 DOM（如 **`appendChild(stencil.container)`**），卸载时 **`stencil.dispose()`**。
 

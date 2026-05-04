@@ -1,0 +1,39 @@
+/* 与官方案例一致：左侧 Stencil，右侧主画布 */
+
+.root {
+  display: flex;
+  border: 1px solid #dfe3e8;
+  min-height: 480px;
+  height: 100%;
+  min-width: 0;
+  background: #fff;
+}
+
+.stencil {
+  width: 260px;
+  flex-shrink: 0;
+  position: relative;
+  border-right: 1px solid #dfe3e8;
+  background: #fff;
+}
+
+.canvas {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+  background: #fff;
+}
+
+/* Stencil 由 X6 注入 DOM，类名为库自带，需 :global 覆盖 */
+:global(.x6-widget-stencil) {
+  background-color: #fff;
+}
+
+:global(.x6-widget-stencil-title) {
+  background-color: #fff;
+}
+
+:global(.x6-widget-stencil-group-title) {
+  background-color: #fff !important;
+}

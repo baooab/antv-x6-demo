@@ -1,5 +1,6 @@
 import { Graph } from '@antv/x6'
 import { useEffect, useRef } from 'react'
+import { bindAgentFlowInteractions } from '../../agent-flow/graphInteractions'
 import { fourWayPorts } from '../../agent-flow/ports'
 import { registerAgentEdgeShape } from '../../agent-flow/registerShapes'
 import {
@@ -46,7 +47,12 @@ export function Lesson02CustomEdge() {
       ports: fourWayPorts,
     })
 
-    return () => graph.dispose()
+    const unbind = bindAgentFlowInteractions(graph)
+
+    return () => {
+      unbind()
+      graph.dispose()
+    }
   }, [])
 
   return <div ref={ref} className="tutorial-single-canvas" />

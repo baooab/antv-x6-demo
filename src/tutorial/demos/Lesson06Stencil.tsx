@@ -9,7 +9,7 @@ import {
 } from '../../agent-flow/graphOptions'
 import { registerAgentEdgeShape, registerStencilPreviewNode } from '../../agent-flow/registerShapes'
 import type { AgentCardConfig } from '../../agent-flow/types'
-import '../../agent-flow/agent-flow.css'
+import { AgentFlowLayout } from '../../agent-flow/AgentFlowLayout'
 
 const kb: AgentCardConfig = {
   key: 'kb',
@@ -78,9 +78,10 @@ export function Lesson06Stencil() {
   }, [])
 
   return (
-    <div className="agent-flow-root tutorial-demo-inner">
-      <div ref={stencilRef} className="agent-flow-stencil" />
-      <div ref={graphRef} className="agent-flow-canvas" />
-    </div>
+    <AgentFlowLayout
+      stencilRef={stencilRef}
+      graphRef={graphRef}
+      className="tutorial-demo-inner"
+    />
   )
 }

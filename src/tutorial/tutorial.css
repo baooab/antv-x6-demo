@@ -145,7 +145,8 @@
   justify-content: center;
 }
 
-.tutorial-demo-inner .agent-flow-root {
+/* 与 AgentFlowLayout 根节点同构：教程区全高时收边 */
+.tutorial-demo-inner[data-agent-flow-root] {
   flex: 1;
   min-height: 0;
   border: none;

@@ -1,0 +1,71 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #5f95ff;
+  border-radius: 12px;
+  background: #fff;
+  width: 260px;
+  height: 96px;
+  box-sizing: border-box;
+  padding: 12px;
+  gap: 8px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.card.kindStart .icon {
+  background: #eef2ff;
+  color: #5f95ff;
+}
+
+.card.kindEnd .icon {
+  background: #fff1f0;
+  color: #ff7875;
+}
+
+.title {
+  font-size: 16px;
+  color: #141414;
+  font-weight: 600;
+}
+
+.badge {
+  margin-left: auto;
+  font-size: 12px;
+  color: #8c8c8c;
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 2px 8px;
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section {
+  font-size: 12px;
+  color: #8c8c8c;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
