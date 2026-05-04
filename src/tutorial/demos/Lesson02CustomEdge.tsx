@@ -4,7 +4,7 @@ import { fourWayPorts } from '../../agent-flow/ports'
 import { registerAgentEdgeShape } from '../../agent-flow/registerShapes'
 import {
   agentFlowHighlighting,
-  agentFlowMousewheel,
+  agentFlowViewport,
   createAgentFlowConnecting,
 } from '../../agent-flow/graphOptions'
 
@@ -22,7 +22,7 @@ export function Lesson02CustomEdge() {
       container: el,
       autoResize: true,
       grid: true,
-      mousewheel: agentFlowMousewheel,
+      ...agentFlowViewport,
       connecting: createAgentFlowConnecting(() => graph),
       highlighting: agentFlowHighlighting,
     })

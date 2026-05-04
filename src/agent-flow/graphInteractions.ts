@@ -1,6 +1,6 @@
 /**
  * 阶段 5 — 交互：端口显隐、边悬停工具、连线前后更新端口颜色
- * 这些逻辑全部挂在主 Graph 实例的事件上，与 UI 框架无关。
+ * 端口仅在悬停节点时显示；已连线端口用蓝色标记，未连线为灰色（悬停时可见）。
  */
 import type { Edge, Graph, Node } from '@antv/x6'
 import { COLOR_PORT_BLUE, COLOR_PORT_GRAY } from './constants'
@@ -23,42 +23,27 @@ function setPortColor(node: Node, portId: string, color: string) {
   node.setPortProp(portId, 'attrs/circle/stroke', color)
 }
 
-function setPortDot(node: Node, portId: string, visible: boolean, color?: string) {
-  setPortVisible(node, portId, visible)
-  if (color) setPortColor(node, portId, color)
-}
-
-function withNodePort(
-  graph: Graph,
-  cellId?: string | null,
-  portId?: string | null,
-  fn?: (node: Node, portId: string) => void,
-) {
-  if (!cellId || !portId || !fn) return
-  const cell = graph.getCellById(cellId)
-  if (cell && cell.isNode()) fn(cell as Node, portId)
-}
-
-function showNodePorts(graph: Graph, node: Node, show: boolean) {
+/** 根据悬停状态显示/隐藏全部端口，并按连线状态着色 */
+function applyNodePortHoverState(graph: Graph, node: Node, hover: boolean) {
   const ps = node.getPorts()
   for (let i = 0; i < ps.length; i += 1) {
     const id = ps[i].id as string
-    if (show) {
-      setPortVisible(node, id, true)
-    } else {
-      const connected = isPortConnected(graph, node, id)
-      setPortVisible(node, id, connected)
-      setPortColor(node, id, connected ? COLOR_PORT_BLUE : COLOR_PORT_GRAY)
-    }
+    const connected = isPortConnected(graph, node, id)
+    setPortVisible(node, id, hover)
+    setPortColor(node, id, connected ? COLOR_PORT_BLUE : COLOR_PORT_GRAY)
   }
 }
 
 export function bindAgentFlowInteractions(graph: Graph): () => void {
+  let hoveredNodeId: string | null = null
+
   const onNodeEnter = ({ node }: { node: Node }) => {
-    showNodePorts(graph, node, true)
+    hoveredNodeId = node.id
+    applyNodePortHoverState(graph, node, true)
   }
   const onNodeLeave = ({ node }: { node: Node }) => {
-    showNodePorts(graph, node, false)
+    hoveredNodeId = null
+    applyNodePortHoverState(graph, node, false)
   }
   const onEdgeEnter = ({ edge }: { edge: Edge }) => {
     edge.addTools({ name: 'button-remove', args: { distance: -40 } })
@@ -74,24 +59,28 @@ export function bindAgentFlowInteractions(graph: Graph): () => void {
     currentPort?: string
   }) => {
     if (!currentPort) return
-    setPortDot(currentCell, currentPort, true, COLOR_PORT_BLUE)
+    applyNodePortHoverState(graph, currentCell, currentCell.id === hoveredNodeId)
   }
   const onEdgeAdded = ({ edge }: { edge: Edge }) => {
-    withNodePort(graph, edge.getSourceCellId(), edge.getSourcePortId(), (node, port) =>
-      setPortDot(node, port, true, COLOR_PORT_BLUE),
-    )
-    withNodePort(graph, edge.getTargetCellId(), edge.getTargetPortId(), (node, port) =>
-      setPortDot(node, port, true, COLOR_PORT_BLUE),
-    )
+    const touch = (cellId?: string | null) => {
+      if (!cellId) return
+      const cell = graph.getCellById(cellId)
+      if (!cell?.isNode()) return
+      applyNodePortHoverState(graph, cell as Node, cellId === hoveredNodeId)
+    }
+    touch(edge.getSourceCellId())
+    touch(edge.getTargetCellId())
   }
   const onEdgeRemoved = ({ edge }: { edge: Edge }) => {
-    withNodePort(graph, edge.getSourceCellId(), edge.getSourcePortId(), (node, port) => {
-      const stillConnected = isPortConnected(graph, node, port)
-      if (!stillConnected) setPortDot(node, port, false, COLOR_PORT_GRAY)
-    })
-    withNodePort(graph, edge.getTargetCellId(), edge.getTargetPortId(), (node, port) => {
-      const stillConnected = isPortConnected(graph, node, port)
-      if (!stillConnected) setPortDot(node, port, false, COLOR_PORT_GRAY)
+    const ids = new Set<string>()
+    const s = edge.getSourceCellId()
+    const t = edge.getTargetCellId()
+    if (s) ids.add(s)
+    if (t) ids.add(t)
+    ids.forEach((id) => {
+      const cell = graph.getCellById(id)
+      if (!cell?.isNode()) return
+      applyNodePortHoverState(graph, cell as Node, id === hoveredNodeId)
     })
   }
 

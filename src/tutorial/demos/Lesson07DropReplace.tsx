@@ -4,7 +4,7 @@ import { bindAgentFlowInteractions } from '../../agent-flow/graphInteractions'
 import { createAgentCard, createAgentStencilCard } from '../../agent-flow/factory'
 import {
   agentFlowHighlighting,
-  agentFlowMousewheel,
+  agentFlowViewport,
   createAgentFlowConnecting,
 } from '../../agent-flow/graphOptions'
 import { ensureAgentFlowShapesRegistered } from '../../agent-flow/registerShapes'
@@ -31,7 +31,7 @@ export function Lesson07DropReplace() {
       container: graphEl,
       autoResize: true,
       grid: true,
-      mousewheel: agentFlowMousewheel,
+      ...agentFlowViewport,
       connecting: createAgentFlowConnecting(() => graph),
       highlighting: agentFlowHighlighting,
     })

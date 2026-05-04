@@ -1,6 +1,6 @@
 import { Graph } from '@antv/x6'
 import { useEffect, useRef } from 'react'
-import { agentFlowMousewheel } from '../../agent-flow/graphOptions'
+import { agentFlowViewport } from '../../agent-flow/graphOptions'
 
 /** 教程 01：仅 Graph + 内置 rect */
 export function Lesson01MinimalGraph() {
@@ -14,7 +14,7 @@ export function Lesson01MinimalGraph() {
       container: el,
       autoResize: true,
       grid: true,
-      mousewheel: agentFlowMousewheel,
+      ...agentFlowViewport,
     })
 
     graph.addNode({

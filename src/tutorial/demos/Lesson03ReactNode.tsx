@@ -1,7 +1,7 @@
 import { Graph } from '@antv/x6'
 import { useEffect, useRef } from 'react'
 import { createAgentCard } from '../../agent-flow/factory'
-import { agentFlowMousewheel } from '../../agent-flow/graphOptions'
+import { agentFlowViewport } from '../../agent-flow/graphOptions'
 import { registerAgentEdgeShape, registerAgentReactCardShape } from '../../agent-flow/registerShapes'
 
 /** 教程 03：只展示 React 卡片，不开启连线，避免与「认形状」混在一起 */
@@ -19,7 +19,7 @@ export function Lesson03ReactNode() {
       container: el,
       autoResize: true,
       grid: true,
-      mousewheel: agentFlowMousewheel,
+      ...agentFlowViewport,
     })
 
     graph.addNode(

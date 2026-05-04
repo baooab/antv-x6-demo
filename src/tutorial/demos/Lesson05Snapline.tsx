@@ -4,7 +4,7 @@ import { bindAgentFlowInteractions } from '../../agent-flow/graphInteractions'
 import { createAgentCard } from '../../agent-flow/factory'
 import {
   agentFlowHighlighting,
-  agentFlowMousewheel,
+  agentFlowViewport,
   createAgentFlowConnecting,
 } from '../../agent-flow/graphOptions'
 import { registerAgentEdgeShape, registerAgentReactCardShape } from '../../agent-flow/registerShapes'
@@ -24,7 +24,7 @@ export function Lesson05Snapline() {
       container: el,
       autoResize: true,
       grid: true,
-      mousewheel: agentFlowMousewheel,
+      ...agentFlowViewport,
       connecting: createAgentFlowConnecting(() => graph),
       highlighting: agentFlowHighlighting,
     })

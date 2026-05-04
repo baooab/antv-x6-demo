@@ -1,6 +1,6 @@
 /**
  * 阶段 2 — 连接桩（Port）
- * 四向圆点：默认隐藏，悬停或已连线时显示；magnet: true 允许从此处拖出边。
+ * 四向圆点：默认隐藏，仅悬停节点时显示；已连线端口在悬停时显示为蓝色。magnet: true 允许从此处拖出边。
  */
 import { COLOR_PORT_GRAY, PORT_DOT_RADIUS } from './constants'
 

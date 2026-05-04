@@ -4,7 +4,7 @@ import { bindAgentFlowInteractions } from '../../agent-flow/graphInteractions'
 import { createAgentStencilCard } from '../../agent-flow/factory'
 import {
   agentFlowHighlighting,
-  agentFlowMousewheel,
+  agentFlowViewport,
   createAgentFlowConnecting,
 } from '../../agent-flow/graphOptions'
 import { registerAgentEdgeShape, registerStencilPreviewNode } from '../../agent-flow/registerShapes'
@@ -43,7 +43,7 @@ export function Lesson06Stencil() {
       container: graphEl,
       autoResize: true,
       grid: true,
-      mousewheel: agentFlowMousewheel,
+      ...agentFlowViewport,
       connecting: createAgentFlowConnecting(() => graph),
       highlighting: agentFlowHighlighting,
     })

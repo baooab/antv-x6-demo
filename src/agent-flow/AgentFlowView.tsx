@@ -8,7 +8,7 @@ import { bindAgentFlowInteractions } from './graphInteractions'
 import { createAgentCard, createAgentStencilCard, createFlowCard } from './factory'
 import {
   agentFlowHighlighting,
-  agentFlowMousewheel,
+  agentFlowViewport,
   createAgentFlowConnecting,
 } from './graphOptions'
 import { ensureAgentFlowShapesRegistered } from './registerShapes'
@@ -34,7 +34,7 @@ export function AgentFlowView() {
       container: graphEl,
       autoResize: true,
       grid: true,
-      mousewheel: agentFlowMousewheel,
+      ...agentFlowViewport,
       connecting: createAgentFlowConnecting(() => graph),
       highlighting: agentFlowHighlighting,
     })

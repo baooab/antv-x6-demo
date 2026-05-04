@@ -3,10 +3,22 @@
  */
 import type { Edge, Graph } from '@antv/x6'
 
+/** 滚轮缩放：须按住 Ctrl（Windows）或 ⌘ Command（macOS） */
 export const agentFlowMousewheel = {
   enabled: true,
   minScale: 0.5,
   maxScale: 3,
+  modifiers: ['ctrl', 'meta'] as ('ctrl' | 'meta')[],
+}
+
+/**
+ * 主画布视口：禁止空白处拖拽平移、滚轮需修饰键才缩放、节点移不出画布区域。
+ * X6 默认 panning.enabled 为 true，不关闭时空白区域可左键拖动画布。
+ */
+export const agentFlowViewport = {
+  panning: false,
+  translating: { restrict: true },
+  mousewheel: agentFlowMousewheel,
 }
 
 /**
