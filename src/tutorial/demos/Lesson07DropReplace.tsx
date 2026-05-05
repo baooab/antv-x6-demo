@@ -6,6 +6,7 @@ import {
   agentFlowHighlighting,
   agentFlowViewport,
   agentStencilGraphOptions,
+  agentStencilSearchUi,
   createAgentFlowConnecting,
 } from '../../agent-flow/graphOptions'
 import { ensureAgentFlowShapesRegistered } from '../../agent-flow/registerShapes'
@@ -46,6 +47,7 @@ export function Lesson07DropReplace() {
       stencilGraphWidth: 240,
       stencilGraphHeight: 480,
       stencilGraphOptions: agentStencilGraphOptions,
+      ...agentStencilSearchUi,
       collapsable: true,
       groups: [
         {

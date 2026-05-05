@@ -27,6 +27,26 @@ export const agentStencilGraphOptions = {
 }
 
 /**
+ * Stencil 顶部检索：`search` 为 true 时仅打开输入框；传入字段映射则按路径子串匹配（不区分大小写）。
+ * 与 `createAgentStencilCard` / `agent-stencil-card` 的 attrs、data 一致。
+ */
+export const agentStencilSearch = {
+  'agent-stencil-card': [
+    'attrs/title/text',
+    'attrs/desc/text',
+    'attrs/iconLabel/text',
+    'data/type',
+  ],
+}
+
+/** 与 `agentStencilSearch` 搭配传入 `new Stencil({ ... })` */
+export const agentStencilSearchUi = {
+  search: agentStencilSearch,
+  placeholder: '搜索节点…',
+  notFoundText: '无匹配项',
+}
+
+/**
  * 传入 `() => graph` 而非 `graph` 本身，避免 `const graph = new Graph({ connecting: ... })`
  * 在入参求值阶段读取尚未完成初始化的 `graph`（TDZ）。
  */

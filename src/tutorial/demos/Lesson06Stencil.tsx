@@ -6,6 +6,7 @@ import {
   agentFlowHighlighting,
   agentFlowViewport,
   agentStencilGraphOptions,
+  agentStencilSearchUi,
   createAgentFlowConnecting,
 } from '../../agent-flow/graphOptions'
 import { registerAgentEdgeShape, registerStencilPreviewNode } from '../../agent-flow/registerShapes'
@@ -58,6 +59,7 @@ export function Lesson06Stencil() {
       stencilGraphWidth: 240,
       stencilGraphHeight: 400,
       stencilGraphOptions: agentStencilGraphOptions,
+      ...agentStencilSearchUi,
       collapsable: true,
       groups: [
         { title: '数据类', name: 'data', graphHeight: 220, layoutOptions: { rowHeight: 88 } },

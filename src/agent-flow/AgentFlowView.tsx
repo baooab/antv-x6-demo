@@ -10,6 +10,7 @@ import {
   agentFlowHighlighting,
   agentFlowViewport,
   agentStencilGraphOptions,
+  agentStencilSearchUi,
   createAgentFlowConnecting,
 } from './graphOptions'
 import { ensureAgentFlowShapesRegistered } from './registerShapes'
@@ -48,6 +49,7 @@ export function AgentFlowView() {
       stencilGraphWidth: 240,
       stencilGraphHeight: 480,
       stencilGraphOptions: agentStencilGraphOptions,
+      ...agentStencilSearchUi,
       collapsable: true,
       groups: [
         {

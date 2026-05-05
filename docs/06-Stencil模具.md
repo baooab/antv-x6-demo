@@ -8,6 +8,7 @@
 - **`stencil.load(nodeList, groupName)`** 向指定分组放入可拖拽节点；
 - 模具内预览使用 **`Graph.registerNode`** 注册的 **`agent-stencil-card`**（纯 SVG，轻量），见 **`registerStencilPreviewNode`**；
 - 用 **`createAgentStencilCard(graph, cfg)`**（`src/agent-flow/factory.ts`）生成模具里的节点实例。
+- 检索：在 **`new Stencil`** 中传入 **`search`**（字段映射）及可选 **`placeholder` / `notFoundText`**；本仓库共用 **`graphOptions.ts`** 中的 **`agentStencilSearchUi`**，按 **`agent-stencil-card`** 的标题、描述、角标与 **`data/type`** 做子串匹配。
 
 ## 布局说明
 
